@@ -15,7 +15,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
 ## What to build
 The following is a list of items (prioritized from most important to least important) we wish to see:
-* Design and implement  a documented RESTful API for the game (think of a mobile app for your API)
+* Design and implement a documented RESTful API for the game (think of a mobile app for your API)
 * When a cell with no adjacent mines is revealed, all adjacent squares will be revealed (and repeat)
 * Ability to 'flag' a cell with a question mark or red flag
 * Detect when game is over
