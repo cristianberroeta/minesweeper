@@ -1,0 +1,14 @@
+.Header {
+    background-color: #1A98D5;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.Header a {
+    color: white;
+    text-decoration: none;
+}

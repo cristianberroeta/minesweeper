@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter} from 'react-router-dom';
+import {Header} from './components/Header';
+import {Main} from './components/Main';
+import {User} from './store/models/User';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const user: User | null = {id: "123", name: "John Doe"};
+    // const user: User | null = null;
+    
+    return (
+        <BrowserRouter>
+            <div>
+                <Header user={user} />
+                <Main user={user} />
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
