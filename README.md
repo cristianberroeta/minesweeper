@@ -68,3 +68,22 @@ Considering the time constraint, I will use the tools that I am more familiar wi
 - Firebase Functions for server REST API
 - Firebase Firestore for the database
 - Firebase Authentication for authenticating users (this is needed for the last requirement: "Ability to support multiple users/accounts")
+
+## Tasks breakdown:
+
+1. Create React App with the following features:
+* When a cell with no adjacent mines is revealed, all adjacent squares will be revealed (and repeat)
+* Ability to 'flag' a cell with a question mark or red flag
+* Detect when game is over
+* Time tracking
+* Ability to select the game parameters: number of rows, columns, and mines
+
+2. Add the following features, using the backend (Firebase Functions REST API and Firestore):
+* Design and implement a documented RESTful API for the game (think of a mobile app for your API)
+* Persistence: I assume this is the same as the next step
+* Ability to start a new game and preserve/resume the old ones
+
+3. Add authentication / authorization capability:
+* Ability to support multiple users/accounts
+
+4. Add unit tests
