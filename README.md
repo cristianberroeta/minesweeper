@@ -39,3 +39,32 @@ We suggest not spending more than 4-5 hours total.  Please make commits as often
 What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
 
 Please email your solution as soon as you have completed the challenge or the time is up
+
+
+
+# SOLUTION:
+
+## Notes:
+
+There are some points in the requirements that are not very precise. For instance, there are many functionalities that could be implemented in the client app only, and that don't need a server / database, and other functionalities where the server / database would only add some advantages over the client-only solution.
+
+So I'll assume that when there is no significant advantage for using a server / database, a client-only solution will be correct. For instance, we could have an API endpoint for generating the new game parameters (the mines positions), but that can be done much more easily in the client. The advantage of using the server in such a case, would be being able to have well-known problems, and hence different users could compare themselves over the same "stages". But as that is not a very significant advantage, and that is not explicitly mentioned in the requirements, I will only use the client for that.
+
+The first requirement is especially vague, as it seems that this challenge requires a huge API by looking at it, and it also mentions a "mobile app", which is misleading:
+> Design and implement a documented RESTful API for the game (think of a mobile app for your API)
+
+
+## Components:
+
+- Client web application
+- Server REST API
+- Database
+
+## Tools:
+
+Considering the time constraint, I will use the tools that I am more familiar with, which are:
+
+- React for the client web application
+- Firebase Functions for server REST API
+- Firebase Firestore for the database
+- Firebase Authentication for authenticating users (this is needed for the last requirement: "Ability to support multiple users/accounts")
