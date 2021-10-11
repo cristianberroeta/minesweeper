@@ -92,7 +92,8 @@ Considering the time constraint, I will use the tools that I am more familiar wi
 
 ### Home page: /
 
-If user is not logged in, they will see a login button
+If user is not logged in, they will see a login button.
+
 If the user is logged in, they will see:
 - a link to start a new game
 - a link to see old games
@@ -100,6 +101,7 @@ If the user is logged in, they will see:
 ### Game page: /games/:gameId
 
 This page will initially present 2 input selectors for the number of rows, columns, and mines, as well as a Start button.
+
 Once the Start button is pressed, these elements will be displayed:
 - the game board,
 - a Timer,
