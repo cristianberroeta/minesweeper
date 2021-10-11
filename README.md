@@ -87,3 +87,27 @@ Considering the time constraint, I will use the tools that I am more familiar wi
 * Ability to support multiple users/accounts
 
 4. Add unit tests
+
+## UI design:
+
+### Home page: /
+
+If user is not logged in, they will see a login button
+If the user is logged in, they will see:
+- a link to start a new game
+- a link to see old games
+
+### Game page: /games/:gameId
+
+This page will initially present 2 input selectors for the number of rows, columns, and mines, as well as a Start button.
+Once the Start button is pressed, these elements will be displayed:
+- the game board,
+- a Timer,
+- a button to Save the game (which will save in the database and redirect to the Home page),
+- a button to Exit the game without saving (which will redirect to the Home page)
+
+Note: every game could be stored in the database, which could be used later for showing the user their past statistics. However, as that is not a requirement, I won't implement it.
+
+### Saved games: /games
+
+This page will displayed the saved games, which the user can click to resume.
