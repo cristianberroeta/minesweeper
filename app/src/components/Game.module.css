@@ -2,3 +2,7 @@
     align-self: center;
     margin: auto;
 }
+
+.GameAreaContainer {
+    width: 100%;
+}

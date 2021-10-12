@@ -1,4 +1,6 @@
 .GameBoard {
     align-self: center;
     margin: auto;
+    display: grid;
+    grid-template-columns: repeat(var(--number-of-cols), auto);
 }

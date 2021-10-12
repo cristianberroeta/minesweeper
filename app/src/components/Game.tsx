@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useRef, useState} from 'react';
 import {Grid} from '../store/models/Cell';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
@@ -75,7 +75,9 @@ export const Game: React.FC<Props> = () => {
                 <button onClick={handleStartNewGame}>Start</button>
             </form>
             :
-            <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
+            <div style={{"--number-of-cols": numberOfCols} as React.CSSProperties} className={styles.GameAreaContainer}>
+                <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
+            </div>
         }
     </>
 };
