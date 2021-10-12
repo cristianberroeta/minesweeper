@@ -5,7 +5,7 @@ import {Main} from './components/Main';
 import {User} from './store/models/User';
 import {FirebaseApp, initializeApp} from "firebase/app";
 import FirebaseContext from './store/context/FirebaseContext';
-import {getAuth, onAuthStateChanged} from "firebase/auth";
+import {getAuth, onAuthStateChanged, signOut} from "firebase/auth";
 
 function App() {
     // const user: User | null = {id: "123", name: "John Doe"};
@@ -43,12 +43,21 @@ function App() {
         });
     }, []);
 
+    function handleLogout() {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            setUser(null);
+        }).catch(() => {
+            alert("An error occurred while logging out");
+        });
+    }
+
     return (
         <BrowserRouter>
             <FirebaseContext.Provider
                 value={app}>
                 <div>
-                    <Header user={user} />
+                    <Header user={user} handleLogout={handleLogout} />
                     <Main user={user} setUser={setUser} />
                 </div>
             </FirebaseContext.Provider>

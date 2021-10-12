@@ -28,3 +28,12 @@
     color: white;
     text-decoration: none;
 }
+
+.Header button {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: calc(10px + 2vmin);
+    background-color: transparent;
+    border: none;
+}
