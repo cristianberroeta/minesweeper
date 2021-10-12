@@ -6,5 +6,3 @@ export interface Cell {
     numberOfMinesAround: number;
     isFlagged: boolean;
 }
-
-export type Grid = Cell[][];

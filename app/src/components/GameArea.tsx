@@ -1,5 +1,6 @@
 import {useStopwatch} from '../hooks/useStopwatch';
-import {Cell, Grid} from '../store/models/Cell';
+import {Cell} from '../store/models/Cell';
+import {Grid} from '../store/models/Grid';
 import styles from './GameArea.module.css';
 import {GameBoard} from './GameBoard';
 import {Stopwatch} from './Stopwatch';

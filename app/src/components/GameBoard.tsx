@@ -1,4 +1,5 @@
-import {Cell, Grid} from '../store/models/Cell';
+import {Cell} from '../store/models/Cell';
+import {Grid} from '../store/models/Grid';
 import styles from './GameBoard.module.css';
 
 interface Props {
