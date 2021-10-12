@@ -1,5 +1,5 @@
 import {useStopwatch} from '../hooks/useStopwatch';
-import {Grid} from '../store/models/Cell';
+import {Cell, Grid} from '../store/models/Cell';
 import styles from './GameArea.module.css';
 import {GameBoard} from './GameBoard';
 import {Stopwatch} from './Stopwatch';
@@ -9,6 +9,7 @@ interface Props {
     numberOfCols: number;
     numberOfMines: number;
     grid: Grid;
+    handleCellClick: (cell: Cell) => void;
 }
 
 export const GameArea: React.FC<Props> = (props) => {
@@ -23,7 +24,7 @@ export const GameArea: React.FC<Props> = (props) => {
             <Stopwatch timeInSeconds={timeInSeconds} />
         </div>
         <div className={styles.gameBoardContainer}>
-            <GameBoard grid={props.grid}/>
+            <GameBoard grid={props.grid} handleCellClick={props.handleCellClick}/>
         </div>
     </div>;
 };

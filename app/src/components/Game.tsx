@@ -1,5 +1,5 @@
 import {ChangeEvent, useRef, useState} from 'react';
-import {Grid} from '../store/models/Cell';
+import {Cell, Grid} from '../store/models/Cell';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
 
@@ -44,7 +44,7 @@ export const Game: React.FC<Props> = () => {
                     row,
                     col,
                     hasMine: false,
-                    isRevealed: true,
+                    isRevealed: false,
                     numberOfMinesAround: 0,
                     isFlagged: false,
                 };
@@ -90,6 +90,28 @@ export const Game: React.FC<Props> = () => {
         return acum;
     }
 
+    function handleCellClick(cell: Cell) {
+        setGrid(grid => {
+            const newGrid = copyGrid(grid);
+            if (!cell.isRevealed) {
+                cell.isRevealed = true;
+            }
+            return newGrid;
+        })
+    }
+
+    function copyGrid(grid: Grid) {
+        const newGrid = createGrid();
+        for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
+            const row = grid[rowIndex];
+            for (let colIndex = 0; colIndex < row.length; colIndex++) {
+                const cell = row[colIndex];
+                newGrid[rowIndex][colIndex] = {...cell};
+            }
+        }
+        return newGrid;
+    }
+
     return <>
         {
             !isGameRunning ?
@@ -101,7 +123,7 @@ export const Game: React.FC<Props> = () => {
             </form>
             :
             <div className={styles.GameAreaContainer}>
-                <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
+                <GameArea handleCellClick={handleCellClick} numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
             </div>
         }
     </>

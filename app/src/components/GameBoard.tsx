@@ -3,6 +3,7 @@ import styles from './GameBoard.module.css';
 
 interface Props {
     grid: Grid;
+    handleCellClick: (cell: Cell) => void;
 }
 
 export const GameBoard: React.FC<Props> = (props) => {
@@ -20,7 +21,7 @@ export const GameBoard: React.FC<Props> = (props) => {
                 return <tr role="row" key={`${index}`} >
                     {row.map(cell => {
                         return <td key={`${cell.row}-${cell.col}`} role="gridcell">
-                            <button>{getDisplayValue(cell)}</button>
+                            <button onClick={() => props.handleCellClick(cell)}>{getDisplayValue(cell)}</button>
                         </td>;
                     })}
                 </tr>;
