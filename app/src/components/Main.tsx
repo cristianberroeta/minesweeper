@@ -22,6 +22,9 @@ export const Main: React.FC<Props> = ({setUser}) => {
                     <Route path="/games/new">
                         <Game />
                     </Route>
+                    <Route path="/games/:id">
+                        <Game />
+                    </Route>
                     <Route path="/games">
                         <SavedGames />
                     </Route>

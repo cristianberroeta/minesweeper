@@ -4,6 +4,7 @@ import {useContext, useEffect, useState} from 'react';
 import UserContext from '../store/context/UserContext';
 import {Game} from '../store/models/Game';
 import {GameBoard} from './GameBoard';
+import {useHistory} from 'react-router';
 
 interface Props {
 }
@@ -11,6 +12,7 @@ interface Props {
 export const SavedGames: React.FC<Props> = () => {
     const user = useContext(UserContext);
     const [games, setGames] = useState<Game[] | null>(null);
+    const history = useHistory();
 
     useEffect(() => {
         async function getUserGames() {
@@ -39,11 +41,15 @@ export const SavedGames: React.FC<Props> = () => {
         getUserGames();
     }, [user]);
 
+    function handleSavedGameClick(game: Game) {
+        history.push(`games/${game.id}`);
+    }
+
     return <div className={styles.SavedGames}>
         <h1>SAVED GAMES</h1>
         <ul className={styles.List}>
             {games?.map(game => {
-                return <li className={styles.ListItem} key={game.id}>
+                return <li className={styles.ListItem} key={game.id} onClick={() => handleSavedGameClick(game)}>
                     <GameBoard grid={game.grid} handleCellClick={() => {}} handleCellRightClick={() => {}} />
                     <div className={styles.DescriptionContainer}>
                         <div>
