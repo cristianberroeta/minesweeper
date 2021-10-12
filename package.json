@@ -1,0 +1,22 @@
+{
+  "name": "minesweeper-API",
+  "version": "1.0.0",
+  "description": "API test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd app && npm build && cd.. && cd functions && cd build",
+    "deploy": "firebase deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristianberroeta/minesweeper-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristianberroeta/minesweeper-API/issues"
+  },
+  "homepage": "https://github.com/cristianberroeta/minesweeper-API#readme"
+}
