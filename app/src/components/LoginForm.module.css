@@ -11,3 +11,14 @@
     margin: 0 0 20px;
     font-size: 18px;
 }
+
+.switchToSignUpOrLogin {
+    color: #1A98D5;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: calc(16px);
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    float: right;
+}

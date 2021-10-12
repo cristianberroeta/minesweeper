@@ -1,0 +1,13 @@
+.Home {
+    align-self: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    align-items: center;
+    color: #545454;
+}
+
+.Home span {
+    text-align: center;
+}
