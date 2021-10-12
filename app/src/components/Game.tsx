@@ -15,7 +15,7 @@ export const Game: React.FC<Props> = () => {
     const [numberOfMines, setNumberOfMines] = useState(3);
     const [grid, setGrid] = useState<Grid>([]);
     const [gameStatus, setGameStatus] = useState<GameStatus>("notStarted");
-    const timeInSeconds = useStopwatch(0);
+    const {timeInSeconds, startStopwatch, stopStopwatch} = useStopwatch(0);
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;
@@ -37,6 +37,7 @@ export const Game: React.FC<Props> = () => {
 
     function handleStartNewGame() {
         setGameStatus("playing");
+        startStopwatch();
         setGrid(setNumberOfMinesAround(setMines(createGrid(numberOfRows, numberOfCols), numberOfMines)));
     }
 
@@ -58,6 +59,7 @@ export const Game: React.FC<Props> = () => {
     function detectGameOver(row: number, col: number) {
         if (grid[row][col].hasMine) {
             setGameStatus("lost");
+            stopStopwatch();
         }
     }
 
