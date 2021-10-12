@@ -46,8 +46,12 @@ export const SavedGames: React.FC<Props> = () => {
                 return <li className={styles.ListItem} key={game.id}>
                     <GameBoard grid={game.grid} handleCellClick={() => {}} handleCellRightClick={() => {}} />
                     <div className={styles.DescriptionContainer}>
-                        <span>{game.createdAt.toISOString()}</span>
-                        <span>{new Date(game.timeInSeconds * 1000).toISOString().substr(11, 8)}</span>
+                        <div>
+                            <b>Saved at:</b> <span>{game.createdAt.toISOString()}</span>
+                        </div>
+                        <div>
+                            <b>Time elapsed:</b> <span>{new Date(game.timeInSeconds * 1000).toISOString().substr(11, 8)}</span>
+                        </div>
                     </div>
                 </li>;
             })}

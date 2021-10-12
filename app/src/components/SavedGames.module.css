@@ -3,7 +3,11 @@
 }
 
 .List {
-    padding: 0;
+    padding: 16px 0;
+}
+
+.List table {
+    justify-content: center;
 }
 
 .ListItem {
