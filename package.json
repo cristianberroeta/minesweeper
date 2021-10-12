@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd app && npm run build && cd .. && cd functions && npm run build",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "deploy:rules": "firebase deploy --only firestore:rules"
   },
   "repository": {
     "type": "git",
