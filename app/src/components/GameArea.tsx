@@ -8,6 +8,7 @@ import {Stopwatch} from './Stopwatch';
 interface Props {
     timeInSeconds: number;
     handleSaveGame: () => void;
+    handleResumeGame: () => void;
     gameStatus: GameStatus;
     numberOfRows: number;
     numberOfCols: number;
@@ -36,7 +37,13 @@ export const GameArea: React.FC<Props> = (props) => {
 
     return <div className={styles.GameArea}>
         <div className={styles.buttonsContainer}>
-            <button onClick={props.handleSaveGame}>Save</button>
+            {
+                props.gameStatus === "playing"
+                ?
+                <button onClick={props.handleSaveGame}>Save</button>
+                :
+                <button onClick={props.handleResumeGame}>Resume</button>
+            }
         </div>
         <div className={styles.gameStatusContainer} style={{visibility: gameStatusVisibility[props.gameStatus] as any}}>
             {gameStatusMessage[props.gameStatus]}

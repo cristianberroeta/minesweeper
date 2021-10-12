@@ -119,6 +119,11 @@ export const Game: React.FC<Props> = () => {
         }
     }
 
+    async function handleResumeGame() {
+        setGameStatus("playing");
+        startStopwatch();
+    }
+
     return <>
         {
             gameStatus === "notStarted" ?
@@ -139,6 +144,7 @@ export const Game: React.FC<Props> = () => {
                 <GameArea
                     timeInSeconds={timeInSeconds}
                     handleSaveGame={handleSaveGame}
+                    handleResumeGame={handleResumeGame}
                     gameStatus={gameStatus}
                     handleCellClick={handleCellClick}
                     handleCellRightClick={handleCellRightClick}
