@@ -44,7 +44,9 @@ export const GameArea: React.FC<Props> = (props) => {
             <Stopwatch timeInSeconds={props.timeInSeconds} />
         </div>
         <div className={styles.gameBoardContainer}>
-            <GameBoard grid={props.grid} handleCellClick={props.handleCellClick}/>
+            <GameBoard
+                grid={props.grid}
+                handleCellClick={props.handleCellClick}/>
         </div>
     </div>;
 };

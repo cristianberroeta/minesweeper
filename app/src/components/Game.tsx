@@ -57,6 +57,7 @@ export const Game: React.FC<Props> = () => {
     }
 
     function handleCellClick(cell: Cell) {
+        if (gameStatus !== "playing") return;
         setGrid(grid => {
             const newGrid = copyGrid(grid);
             const newCell = newGrid[cell.row][cell.col];
