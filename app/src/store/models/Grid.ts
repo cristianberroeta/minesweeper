@@ -73,7 +73,9 @@ function revealAdjacentCellsRecursively(grid: Grid, cell: Cell) {
     for (const adjacentCell of adjacentCells) {
         if (!adjacentCell.isRevealed && !adjacentCell.hasMine) {
             adjacentCell.isRevealed = true;
-            revealAdjacentCellsRecursively(grid, adjacentCell);
+            if (adjacentCell.numberOfMinesAround === 0) {
+                revealAdjacentCellsRecursively(grid, adjacentCell);
+            }
         }
     }
 }
