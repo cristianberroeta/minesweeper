@@ -6,6 +6,6 @@ interface Props {
 
 export const Stopwatch: React.FC<Props> = (props) => {
     return <div className={styles.Stopwatch}>
-        {props.timeInSeconds}
+        {new Date(props.timeInSeconds * 1000).toISOString().substr(11, 8)}
     </div>;
 };
