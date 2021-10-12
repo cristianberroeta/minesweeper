@@ -4,6 +4,7 @@ import {Game} from "./Game";
 import {Home} from "./Home";
 import {LoginForm} from "./LoginForm";
 import styles from './Main.module.css';
+import {SavedGames} from "./SavedGames";
 
 interface Props {
     user: User | null;
@@ -17,6 +18,9 @@ export const Main: React.FC<Props> = ({user, setUser}) => {
                 <Switch>
                     <Route path="/games/new">
                         <Game />
+                    </Route>
+                    <Route path="/games">
+                        <SavedGames />
                     </Route>
                     <Route path="/">
                         <Home />
