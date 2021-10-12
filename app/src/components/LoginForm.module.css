@@ -1,4 +1,13 @@
 .LoginForm {
     align-self: center;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+}
+
+.LoginForm input,
+.LoginForm button {
+    margin: 0 0 20px;
+    font-size: 18px;
 }
