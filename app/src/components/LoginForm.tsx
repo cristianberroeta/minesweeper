@@ -68,6 +68,14 @@ export const LoginForm: React.FC<Props> = props => {
     return <form onSubmit={handleRegisterOrLogin} className={styles.LoginForm}>
         <input type="email" name="email" id="email" placeholder="Enter your name" value={email} onChange={handleInputChange} />
         <input type="password" name="password" id="password" placeholder="And your password" value={password} onChange={handleInputChange} />
-        <button>Register</button>
+        <button type="submit">{isLoginOrSignUp === "signup" ? "Register" : "Login"}</button>
+        <div>
+            <button
+                className={styles.switchToSignUpOrLogin}
+                type="button"
+                onClick={() => isLoginOrSignUp !== "signup" ? setIsLoginOrSignUp("signup") : setIsLoginOrSignUp("login")}>
+                Switch to {isLoginOrSignUp !== "signup" ? "register" : "login"}
+            </button>
+        </div>
     </form>;
 };
