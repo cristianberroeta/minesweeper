@@ -5,6 +5,7 @@ import {Main} from './components/Main';
 import {User} from './store/models/User';
 import {FirebaseApp, initializeApp} from "firebase/app";
 import FirebaseContext from './store/context/FirebaseContext';
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 function App() {
     // const user: User | null = {id: "123", name: "John Doe"};
@@ -25,7 +26,23 @@ function App() {
         const app = initializeApp(firebaseConfig);
         setApp(app);
     }, []);
-    
+
+    useEffect(() => {
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                const appUser: User = {
+                    uid: user.uid,
+                    email: user.email ?? "",
+                };
+                setUser(appUser);
+            } else {
+                setUser(null);
+            }
+        });
+    }, []);
+
     return (
         <BrowserRouter>
             <FirebaseContext.Provider
