@@ -32,7 +32,7 @@ export const Game: React.FC<Props> = () => {
 
     function handleStartNewGame() {
         setIsGameRunning(true);
-        setGrid(createGrid());
+        setGrid(setMines(createGrid()));
     }
 
     function createGrid() {
@@ -49,6 +49,18 @@ export const Game: React.FC<Props> = () => {
                     isFlagged: false,
                 };
             }
+        }
+        return grid;
+    }
+
+    function setMines(grid: Grid) {
+        let minesPlaced = 0;
+        while (minesPlaced < numberOfMines && minesPlaced < numberOfRows * numberOfCols) {
+            const row = Math.floor(Math.random() * numberOfRows);
+            const col = Math.floor(Math.random() * numberOfCols);
+            if (grid[row][col].hasMine) continue;
+            grid[row][col].hasMine = true;
+            minesPlaced++;
         }
         return grid;
     }
