@@ -17,13 +17,13 @@ export const Game: React.FC<Props> = () => {
         const value = Number.parseInt(event.target.value);
         switch (name) {
             case "numberOfRows":
-                setNumberOfRows(value);
+                setNumberOfRows(Number.isNaN(value) ? 1 : value);
                 break;
             case "numberOfCols":
-                setNumberOfCols(value);
+                setNumberOfCols(Number.isNaN(value) ? 1 : value);
                 break;
             case "numberOfMines":
-                setNumberOfMines(value);
+                setNumberOfMines(Number.isNaN(value) ? 0 : value);
                 break;
             default:
                 break;
