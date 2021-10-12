@@ -44,6 +44,10 @@ Please email your solution as soon as you have completed the challenge or the ti
 
 # SOLUTION:
 
+## Url:
+
+https://mine-sweeper-deviget.web.app
+
 ## Notes:
 
 There are some points in the requirements that are not very precise. For instance, there are many functionalities that could be implemented in the client app only, and that don't need a server / database, and other functionalities where the server / database would only add some advantages over the client-only solution.
@@ -117,7 +121,15 @@ This page will displayed the saved games, which the user can click to resume.
 
 # TODO:
 
-1. Improve accessibility:
+I spent much more than the 5 hours limit, and I still have some tasks left, which I've described below. Please let me know if you want me to continue with these:
+
+1. Use REST API for storing and getting the games. This is actually not needed when using Firestore, as the queries can be sent directly from the client to the database. However, writing a REST API was probably a requirement of this challenge.
+
+2. Add unit tests
+
+3. Add end to end tests
+
+4. Improve accessibility:
 
 - add event listeners for key presses
 - save the last tab index, so that the user can go back to their last cell
