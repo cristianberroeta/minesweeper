@@ -4,9 +4,10 @@ export const useStopwatch = (initialSecond: number) => {
     const [timeInSeconds, setTimeInSeconds] = useState(initialSecond);
 
     useEffect(() => {
-        window.setInterval(() => {
+        const interval = window.setInterval(() => {
             setTimeInSeconds((time) => time + 1);
         }, 1000)
+        return () => clearInterval(interval);
     }, []);
 
     return timeInSeconds;
