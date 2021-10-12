@@ -1,4 +1,19 @@
 .GameArea {
-    align-self: center;
-    margin: auto;
+    width: 100%;
+}
+
+.buttonsContainer,
+.stopwatchContainer,
+.gameBoardContainer {
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+
+.buttonsContainer button:first-child {
+    margin-right: 20px;
+}
+
+.buttonsContainer button {
+    font-size: 20px;
 }
