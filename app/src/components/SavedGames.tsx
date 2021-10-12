@@ -3,6 +3,7 @@ import {collection, query, where, getDocs, getFirestore} from "firebase/firestor
 import {useContext, useEffect, useState} from 'react';
 import UserContext from '../store/context/UserContext';
 import {Game} from '../store/models/Game';
+import {GameBoard} from './GameBoard';
 
 interface Props {
 }
@@ -40,13 +41,16 @@ export const SavedGames: React.FC<Props> = () => {
 
     return <div className={styles.SavedGames}>
         <h1>SAVED GAMES</h1>
-        <div>
+        <ul className={styles.List}>
             {games?.map(game => {
-                return <div key={game.id}>
-                    <span>{game.createdAt.toISOString()}</span>
-                    <span>{new Date(game.timeInSeconds * 1000).toISOString().substr(11, 8)}</span>
-                </div>;
+                return <li className={styles.ListItem} key={game.id}>
+                    <GameBoard grid={game.grid} handleCellClick={() => {}} handleCellRightClick={() => {}} />
+                    <div className={styles.DescriptionContainer}>
+                        <span>{game.createdAt.toISOString()}</span>
+                        <span>{new Date(game.timeInSeconds * 1000).toISOString().substr(11, 8)}</span>
+                    </div>
+                </li>;
             })}
-        </div>
+        </ul>
     </div>;
 };
