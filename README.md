@@ -113,3 +113,12 @@ Note: every game could be stored in the database, which could be used later for 
 ### Saved games: /games
 
 This page will displayed the saved games, which the user can click to resume.
+
+
+# TODO:
+
+1. Improve accessibility:
+
+- add event listeners for key presses
+- save the last tab index, so that the user can go back to their last cell
+- more accessibility attributes in the game board

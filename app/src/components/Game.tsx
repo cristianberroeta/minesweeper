@@ -75,7 +75,7 @@ export const Game: React.FC<Props> = () => {
                 <button onClick={handleStartNewGame}>Start</button>
             </form>
             :
-            <div style={{"--number-of-cols": numberOfCols} as React.CSSProperties} className={styles.GameAreaContainer}>
+            <div className={styles.GameAreaContainer}>
                 <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
             </div>
         }

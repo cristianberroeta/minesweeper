@@ -6,18 +6,28 @@ interface Props {
 }
 
 export const GameBoard: React.FC<Props> = (props) => {
+
+
     return <>
-        <div className={styles.GameBoard}>
-            {props.grid.map(row => {
-                return row.map(cell => {
-                    return <button key={`${cell.row}-${cell.col}`}>{
-                        cell.hasMine ?
-                        "M"
-                        :
-                        cell.row
-                    }</button>;
-                });
+        <table role="grid" className={styles.GameBoard}>
+            <tbody>
+            {props.grid.map((row, index) => {
+                return <tr role="row" key={`${index}`} >
+                    {row.map(cell => {
+                        return <td key={`${cell.row}-${cell.col}`} role="gridcell">
+                            <button>
+                                {
+                                    cell.hasMine ?
+                                    "M"
+                                    :
+                                    cell.row
+                                }
+                            </button>
+                        </td>;
+                    })}
+                </tr>;
             })}
-        </div>
+            </tbody>
+        </table>
     </>;
 };
