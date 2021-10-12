@@ -69,7 +69,13 @@ export const Game: React.FC<Props> = () => {
             </form>
             :
             <div className={styles.GameAreaContainer}>
-                <GameArea handleCellClick={handleCellClick} numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
+                <GameArea
+                    gameStatus={gameStatus}
+                    handleCellClick={handleCellClick}
+                    numberOfRows={numberOfRows}
+                    numberOfCols={numberOfCols}
+                    numberOfMines={numberOfMines}
+                    grid={grid} />
             </div>
         }
     </>
