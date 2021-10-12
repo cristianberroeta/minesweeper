@@ -105,6 +105,8 @@ export const Game: React.FC<Props> = () => {
     }
 
     async function handleSaveGame() {
+        setGameStatus("paused");
+        stopStopwatch();
         try {
             const db = getFirestore();
             await addDoc(collection(db, "games"), {
@@ -112,8 +114,6 @@ export const Game: React.FC<Props> = () => {
                 grid: JSON.stringify(grid),
                 userId: user?.uid
             });
-            setGameStatus("paused");
-            stopStopwatch();
         } catch (error) {
             console.log(error);
         }
