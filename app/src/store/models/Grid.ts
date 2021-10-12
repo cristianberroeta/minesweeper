@@ -57,14 +57,37 @@ export function setNumberOfMinesAround(grid: Grid) {
 
 function calculateNumberOfMinesAround(grid: Grid, row: number, col: number) {
     let acum = 0;
+    const adjacentCells = getAdjacentCells(grid, grid[row][col]);
+    for (const adjacentCell of adjacentCells) {
+        if (grid[adjacentCell.row][adjacentCell.col].hasMine) acum++;
+    }
+    return acum;
+}
+
+export function revealAdjacentCells(grid: Grid, cell: Cell) {
+    revealAdjacentCellsRecursively(grid, cell);
+}
+
+function revealAdjacentCellsRecursively(grid: Grid, cell: Cell) {
+    const adjacentCells = getAdjacentCells(grid, cell);
+    for (const adjacentCell of adjacentCells) {
+        if (!adjacentCell.isRevealed && !adjacentCell.hasMine) {
+            adjacentCell.isRevealed = true;
+            revealAdjacentCellsRecursively(grid, adjacentCell);
+        }
+    }
+}
+
+function getAdjacentCells(grid: Grid, cell: Cell) {
+    const adjacentCells = [];
     for (let deltaRow = -1; deltaRow < 2; deltaRow++) {
         for (let deltaCol = -1; deltaCol < 2; deltaCol++) {
             if (deltaRow === 0 && deltaCol === 0) continue;
-            const otherRow = row + deltaRow;
-            const otherCol = col + deltaCol;
+            const otherRow = cell.row + deltaRow;
+            const otherCol = cell.col + deltaCol;
             if (otherRow < 0 || otherCol < 0 || otherRow >= grid.length || otherCol >= grid[0].length) continue;
-            if (grid[otherRow][otherCol].hasMine) acum++;
+            adjacentCells.push(grid[otherRow][otherCol]);
         }
     }
-    return acum;
+    return adjacentCells;
 }

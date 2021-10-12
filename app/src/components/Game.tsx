@@ -1,6 +1,6 @@
 import {ChangeEvent, useState} from 'react';
 import {Cell} from '../store/models/Cell';
-import {Grid, setMines, setNumberOfMinesAround} from '../store/models/Grid';
+import {Grid, revealAdjacentCells, setMines, setNumberOfMinesAround} from '../store/models/Grid';
 import {copyGrid, createGrid} from '../store/models/Grid';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
@@ -40,11 +40,15 @@ export const Game: React.FC<Props> = () => {
     function handleCellClick(cell: Cell) {
         setGrid(grid => {
             const newGrid = copyGrid(grid);
-            if (!cell.isRevealed) {
-                cell.isRevealed = true;
+            const newCell = newGrid[cell.row][cell.col];
+            if (!newCell.isRevealed) {
+                newCell.isRevealed = true;
+                if (!newCell.hasMine && newCell.numberOfMinesAround === 0) {
+                    revealAdjacentCells(newGrid, newCell);
+                }
             }
             return newGrid;
-        })
+        });
     }
 
     return <>
