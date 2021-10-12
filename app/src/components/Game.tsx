@@ -11,8 +11,8 @@ export const Game: React.FC<Props> = () => {
     const [numberOfRows, setNumberOfRows] = useState(5);
     const [numberOfCols, setNumberOfCols] = useState(5);
     const [numberOfMines, setNumberOfMines] = useState(3);
-    const [isGameRunning, setIsGameRunning] = useState(false);
     const [grid, setGrid] = useState<Grid>([]);
+    const [gameStatus, setGameStatus] = useState<"lost" | "won" | "playing" | "notStarted" | "paused">("notStarted");
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;
@@ -33,7 +33,7 @@ export const Game: React.FC<Props> = () => {
     }
 
     function handleStartNewGame() {
-        setIsGameRunning(true);
+        setGameStatus("playing");
         setGrid(setNumberOfMinesAround(setMines(createGrid(numberOfRows, numberOfCols), numberOfMines)));
     }
 
@@ -53,7 +53,7 @@ export const Game: React.FC<Props> = () => {
 
     return <>
         {
-            !isGameRunning ?
+            gameStatus === "notStarted" ?
             <form className={styles.Game}>
                 <input type="number" name="numberOfRows" value={numberOfRows} onChange={handleInputChange} min={1} />
                 <input type="number" name="numberOfCols" value={numberOfCols} onChange={handleInputChange} min={1} />

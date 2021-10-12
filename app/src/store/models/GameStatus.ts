@@ -1,0 +1,1 @@
+export type GameStatus = "lost" | "won" | "playing" | "notStarted" | "paused";
