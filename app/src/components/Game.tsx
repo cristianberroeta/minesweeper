@@ -72,6 +72,18 @@ export const Game: React.FC<Props> = () => {
         detectGameOver(cell.row, cell.col);
     }
 
+    function handleCellRightClick(cell: Cell) {
+        if (gameStatus !== "playing") return;
+        setGrid(grid => {
+            const newGrid = copyGrid(grid);
+            const newCell = newGrid[cell.row][cell.col];
+            if (!newCell.isRevealed) {
+                newCell.isFlagged = !newCell.isFlagged;
+            }
+            return newGrid;
+        });
+    }
+
     function detectGameOver(row: number, col: number) {
         if (grid[row][col].hasMine) {
             setGameStatus("lost");
@@ -103,6 +115,7 @@ export const Game: React.FC<Props> = () => {
                     timeInSeconds={timeInSeconds}
                     gameStatus={gameStatus}
                     handleCellClick={handleCellClick}
+                    handleCellRightClick={handleCellRightClick}
                     numberOfRows={numberOfRows}
                     numberOfCols={numberOfCols}
                     numberOfMines={numberOfMines}

@@ -13,6 +13,7 @@ interface Props {
     numberOfMines: number;
     grid: Grid;
     handleCellClick: (cell: Cell) => void;
+    handleCellRightClick: (cell: Cell) => void;
 }
 
 export const GameArea: React.FC<Props> = (props) => {
@@ -46,7 +47,8 @@ export const GameArea: React.FC<Props> = (props) => {
         <div className={styles.gameBoardContainer}>
             <GameBoard
                 grid={props.grid}
-                handleCellClick={props.handleCellClick}/>
+                handleCellClick={props.handleCellClick}
+                handleCellRightClick={props.handleCellRightClick}/>
         </div>
     </div>;
 };
