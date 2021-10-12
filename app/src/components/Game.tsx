@@ -71,7 +71,7 @@ export const Game: React.FC<Props> = () => {
             <form className={styles.Game}>
                 <input type="number" name="numberOfRows" value={numberOfRows} onChange={handleInputChange} min={1} />
                 <input type="number" name="numberOfCols" value={numberOfCols} onChange={handleInputChange} min={1} />
-                <input type="number" name="numberOfMines" value={numberOfMines} onChange={handleInputChange} min={0} />
+                <input type="number" name="numberOfMines" value={numberOfMines} onChange={handleInputChange} min={0} max={numberOfRows * numberOfCols} />
                 <button onClick={handleStartNewGame}>Start</button>
             </form>
             :
