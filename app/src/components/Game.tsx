@@ -1,8 +1,8 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import {useStopwatch} from '../hooks/useStopwatch';
 import {Cell} from '../store/models/Cell';
 import {GameStatus} from '../store/models/GameStatus';
-import {Grid, revealAdjacentCells, setMines, setNumberOfMinesAround} from '../store/models/Grid';
+import {areAllNonMinesRevealed, Grid, revealAdjacentCells, setMines, setNumberOfMinesAround} from '../store/models/Grid';
 import {copyGrid, createGrid} from '../store/models/Grid';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
@@ -16,6 +16,21 @@ export const Game: React.FC<Props> = () => {
     const [grid, setGrid] = useState<Grid>([]);
     const [gameStatus, setGameStatus] = useState<GameStatus>("notStarted");
     const {timeInSeconds, startStopwatch, stopStopwatch} = useStopwatch(0);
+
+    useEffect(() => {
+        function detectHasUserWon() {
+            if (hasUserWon()) {
+                setGameStatus("won");
+                stopStopwatch();
+            }
+        }
+        
+        function hasUserWon() {
+            return grid.length > 0 && areAllNonMinesRevealed(grid);
+        }
+
+        detectHasUserWon();
+    }, [grid, stopStopwatch]);
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;

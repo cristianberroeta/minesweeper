@@ -91,3 +91,14 @@ function getAdjacentCells(grid: Grid, cell: Cell) {
     }
     return adjacentCells;
 }
+
+export function areAllNonMinesRevealed(grid: Grid) {
+    for (const row of grid) {
+        for (const cell of row) {
+            if (!cell.hasMine && !cell.isRevealed) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
