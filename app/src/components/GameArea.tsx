@@ -36,7 +36,6 @@ export const GameArea: React.FC<Props> = (props) => {
     return <div className={styles.GameArea}>
         <div className={styles.buttonsContainer}>
             <button>Save</button>
-            <button>Exit without saving</button>
         </div>
         <div className={styles.gameStatusContainer} style={{visibility: gameStatusVisibility[props.gameStatus] as any}}>
             {gameStatusMessage[props.gameStatus]}

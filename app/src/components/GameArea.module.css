@@ -10,10 +10,6 @@
     margin: 40px;
 }
 
-.buttonsContainer button:first-child {
-    margin-right: 20px;
-}
-
 .buttonsContainer button {
     font-size: 20px;
 }
