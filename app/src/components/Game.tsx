@@ -1,4 +1,5 @@
 import {ChangeEvent, useState} from 'react';
+import {Grid} from '../store/models/Cell';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
 
@@ -9,6 +10,7 @@ export const Game: React.FC<Props> = () => {
     const [numberOfCols, setNumberOfCols] = useState(5);
     const [numberOfMines, setNumberOfMines] = useState(3);
     const [isGameRunning, setIsGameRunning] = useState(false);
+    const [grid, setGrid] = useState<Grid>([]);
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;
@@ -30,6 +32,24 @@ export const Game: React.FC<Props> = () => {
 
     function handleStartNewGame() {
         setIsGameRunning(true);
+        setGrid(createGrid());
+    }
+
+    function createGrid() {
+        const grid: Grid = [];
+        for (let row = 0; row < numberOfRows; row++) {
+            grid.push([]);
+            for (let col = 0; col < numberOfCols; col++) {
+                grid[row][col] = {
+                    row,
+                    col,
+                    hasMine: false,
+                    isVisible: false,
+                    numberOfMinesAround: 0,
+                };
+            }
+        }
+        return grid;
     }
 
     return <>
@@ -42,7 +62,7 @@ export const Game: React.FC<Props> = () => {
                 <button onClick={handleStartNewGame}>Start</button>
             </form>
             :
-            <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines}/>
+            <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines} grid={grid} />
         }
     </>
 };
