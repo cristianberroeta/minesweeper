@@ -5,14 +5,15 @@ import styles from './Main.module.css';
 
 interface Props {
     user: User | null;
+    setUser: (user: User) => void;
 }
 
-export const Main: React.FC<Props> = ({user}) => {
+export const Main: React.FC<Props> = ({user, setUser}) => {
     return <main className={styles.Main}>
         {user ?
             <Game />
             :
-            <LoginForm/>
+            <LoginForm setUser={setUser}/>
         }
     </main>;
 };
