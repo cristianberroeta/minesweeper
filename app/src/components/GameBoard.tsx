@@ -22,7 +22,7 @@ export const GameBoard: React.FC<Props> = (props) => {
                 return <tr role="row" key={`${index}`} >
                     {row.map(cell => {
                         return <td key={`${cell.row}-${cell.col}`} role="gridcell">
-                            <button onClick={() => props.handleCellClick(cell)}>{getDisplayValue(cell)}</button>
+                            <button aria-pressed={cell.isRevealed} onClick={() => props.handleCellClick(cell)}>{getDisplayValue(cell)}</button>
                         </td>;
                     })}
                 </tr>;
