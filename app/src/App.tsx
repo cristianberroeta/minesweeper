@@ -60,8 +60,8 @@ function App() {
                 <UserContext.Provider
                     value={user}>
                     <div>
-                        <Header user={user} handleLogout={handleLogout} />
-                        <Main user={user} setUser={setUser} />
+                        <Header handleLogout={handleLogout} />
+                        <Main setUser={setUser} />
                     </div>
                 </UserContext.Provider>
             </FirebaseContext.Provider>

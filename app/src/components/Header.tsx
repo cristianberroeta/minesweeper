@@ -1,13 +1,15 @@
+import {useContext} from "react";
 import {Link, Route, Switch} from "react-router-dom";
-import {User} from "../store/models/User";
+import UserContext from "../store/context/UserContext";
 import styles from './Header.module.css';
 
 interface Props {
-    user: User | null;
     handleLogout: () => void;
 }
 
-export const Header: React.FC<Props> = ({user, handleLogout}) => {
+export const Header: React.FC<Props> = ({handleLogout}) => {
+    const user = useContext(UserContext);
+    
     return <header className={styles.Header}>
         <div>Minesweeper</div>
         <div className={styles.Nav}>
