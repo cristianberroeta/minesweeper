@@ -8,13 +8,16 @@ interface Props {
 
 export const Header: React.FC<Props> = ({user}) => {
     return <header className={styles.Header}>
-        {user ?
-            <>
-                <Link to={`/games/new`}>Start new game</Link>
-                <Link to="/games">Saved games</Link>
-            </>
-            :
-            null
-        }
+        <div>Minesweeper</div>
+        <div className={styles.Nav}>
+            {user ?
+                <>
+                    <Link to={`/games/new`}>Start new game</Link>
+                    <Link to="/games">Saved games</Link>
+                </>
+                :
+                null
+            }
+        </div>
     </header>;
 };
