@@ -125,11 +125,13 @@ I spent much more than the 5 hours limit, and I still have some tasks left, whic
 
 1. Use REST API for storing and getting the games. This is actually not needed when using Firestore, as the queries can be sent directly from the client to the database. However, writing a REST API was probably a requirement of this challenge.
 
-2. Add unit tests
+2. Add paging in the /games page. Otherwise, it will be very slow for a user with many games stored.
 
-3. Add end to end tests
+3. Add unit tests
 
-4. Improve accessibility:
+4. Add end to end tests
+
+5. Improve accessibility:
 
 - add event listeners for key presses
 - save the last tab index, so that the user can go back to their last cell
