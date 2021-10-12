@@ -42,7 +42,13 @@ export const GameArea: React.FC<Props> = (props) => {
                 ?
                 <button onClick={props.handleSaveGame}>Save</button>
                 :
-                <button onClick={props.handleResumeGame}>Resume</button>
+                (
+                    props.gameStatus === "paused"
+                    ?
+                    <button onClick={props.handleResumeGame}>Resume</button>
+                    :
+                    null
+                )
             }
         </div>
         <div className={styles.gameStatusContainer} style={{visibility: gameStatusVisibility[props.gameStatus] as any}}>
