@@ -112,7 +112,8 @@ export const Game: React.FC<Props> = () => {
             await addDoc(collection(db, "games"), {
                 timeInSeconds: timeInSeconds,
                 grid: JSON.stringify(grid),
-                userId: user?.uid
+                userId: user?.uid,
+                createdAt: new Date()
             });
         } catch (error) {
             console.log(error);
