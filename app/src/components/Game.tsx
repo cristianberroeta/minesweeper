@@ -104,10 +104,16 @@ export const Game: React.FC<Props> = () => {
         {
             gameStatus === "notStarted" ?
             <form className={styles.Game}>
-                <input type="number" name="numberOfRows" value={numberOfRows} onChange={handleInputChange} min={1} />
-                <input type="number" name="numberOfCols" value={numberOfCols} onChange={handleInputChange} min={1} />
-                <input type="number" name="numberOfMines" value={numberOfMines} onChange={handleInputChange} min={0} max={numberOfRows * numberOfCols} />
-                <button onClick={handleStartNewGame}>Start</button>
+                <label className={styles.InputContainer}>Number of rows
+                    <input className={styles.Input} type="number" name="numberOfRows" value={numberOfRows} onChange={handleInputChange} min={1} />
+                </label>
+                <label className={styles.InputContainer}>Number of columns
+                <input className={styles.Input} type="number" name="numberOfCols" value={numberOfCols} onChange={handleInputChange} min={1} />
+                </label>
+                <label className={styles.InputContainer}>Number of mines
+                <input className={styles.Input} type="number" name="numberOfMines" value={numberOfMines} onChange={handleInputChange} min={0} max={numberOfRows * numberOfCols} />
+                </label>
+                <button className={styles.StartButton} onClick={handleStartNewGame}>Start</button>
             </form>
             :
             <div className={styles.GameAreaContainer}>

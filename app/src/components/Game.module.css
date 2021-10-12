@@ -1,8 +1,27 @@
 .Game {
     align-self: center;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    font-size: 18px;
+}
+
+.InputContainer {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .GameAreaContainer {
     width: 100%;
+}
+
+.Input {
+    width: 50px;
+    font-size: 18px;
+}
+
+.StartButton {
+    font-size: 18px;
 }
