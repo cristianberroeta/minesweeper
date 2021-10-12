@@ -4,6 +4,9 @@
 
 .List {
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
 }
 
 .List table {
