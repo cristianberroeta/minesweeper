@@ -1,6 +1,6 @@
 import {ChangeEvent, useState} from 'react';
 import styles from './Game.module.css';
-import {GameBoard} from './GameBoard';
+import {GameArea} from './GameArea';
 
 interface Props {}
 
@@ -42,7 +42,7 @@ export const Game: React.FC<Props> = () => {
                 <button onClick={handleStartNewGame}>Start</button>
             </form>
             :
-            <GameBoard numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines}/>
+            <GameArea numberOfRows={numberOfRows} numberOfCols={numberOfCols} numberOfMines={numberOfMines}/>
         }
     </>
 };

@@ -1,4 +1,4 @@
-import styles from './GameBoard.module.css';
+import styles from './GameArea.module.css';
 
 interface Props {
     numberOfRows: number;
@@ -6,7 +6,7 @@ interface Props {
     numberOfMines: number;
 }
 
-export const GameBoard: React.FC<Props> = (props) => {
+export const GameArea: React.FC<Props> = (props) => {
     return <>
         numberOfRows: {props.numberOfRows};
         numberOfCols: {props.numberOfCols};
