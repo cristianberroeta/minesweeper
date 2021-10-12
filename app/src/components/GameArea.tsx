@@ -1,4 +1,3 @@
-import {useStopwatch} from '../hooks/useStopwatch';
 import {Cell} from '../store/models/Cell';
 import {GameStatus} from '../store/models/GameStatus';
 import {Grid} from '../store/models/Grid';
@@ -7,6 +6,7 @@ import {GameBoard} from './GameBoard';
 import {Stopwatch} from './Stopwatch';
 
 interface Props {
+    timeInSeconds: number;
     gameStatus: GameStatus;
     numberOfRows: number;
     numberOfCols: number;
@@ -16,8 +16,6 @@ interface Props {
 }
 
 export const GameArea: React.FC<Props> = (props) => {
-    const timeInSeconds = useStopwatch(0);
-
     const gameStatusMessage: Record<GameStatus, string> = {
         "lost": "You lost",
         "won": "You win",
@@ -43,7 +41,7 @@ export const GameArea: React.FC<Props> = (props) => {
             {gameStatusMessage[props.gameStatus]}
         </div>
         <div className={styles.stopwatchContainer}>
-            <Stopwatch timeInSeconds={timeInSeconds} />
+            <Stopwatch timeInSeconds={props.timeInSeconds} />
         </div>
         <div className={styles.gameBoardContainer}>
             <GameBoard grid={props.grid} handleCellClick={props.handleCellClick}/>

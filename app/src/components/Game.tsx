@@ -1,5 +1,7 @@
 import {ChangeEvent, useState} from 'react';
+import {useStopwatch} from '../hooks/useStopwatch';
 import {Cell} from '../store/models/Cell';
+import {GameStatus} from '../store/models/GameStatus';
 import {Grid, revealAdjacentCells, setMines, setNumberOfMinesAround} from '../store/models/Grid';
 import {copyGrid, createGrid} from '../store/models/Grid';
 import styles from './Game.module.css';
@@ -12,7 +14,8 @@ export const Game: React.FC<Props> = () => {
     const [numberOfCols, setNumberOfCols] = useState(5);
     const [numberOfMines, setNumberOfMines] = useState(3);
     const [grid, setGrid] = useState<Grid>([]);
-    const [gameStatus, setGameStatus] = useState<"lost" | "won" | "playing" | "notStarted" | "paused">("notStarted");
+    const [gameStatus, setGameStatus] = useState<GameStatus>("notStarted");
+    const timeInSeconds = useStopwatch(0);
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;
@@ -70,6 +73,7 @@ export const Game: React.FC<Props> = () => {
             :
             <div className={styles.GameAreaContainer}>
                 <GameArea
+                    timeInSeconds={timeInSeconds}
                     gameStatus={gameStatus}
                     handleCellClick={handleCellClick}
                     numberOfRows={numberOfRows}
