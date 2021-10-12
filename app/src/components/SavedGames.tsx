@@ -51,7 +51,7 @@ export const SavedGames: React.FC<Props> = () => {
                     <GameBoard grid={game.grid} handleCellClick={() => {}} handleCellRightClick={() => {}} />
                     <div className={styles.DescriptionContainer}>
                         <div>
-                            <b>Saved at:</b> <span>{game.createdAt.toISOString()}</span>
+                            <b>Saved at:</b> <span>{game.createdAt.toLocaleString()}</span>
                         </div>
                         <div>
                             <b>Time elapsed:</b> <span>{new Date(game.timeInSeconds * 1000).toISOString().substr(11, 8)}</span>
