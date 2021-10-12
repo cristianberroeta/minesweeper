@@ -4,12 +4,10 @@ import {Grid} from '../store/models/Grid';
 import styles from './GameArea.module.css';
 import {GameBoard} from './GameBoard';
 import {Stopwatch} from './Stopwatch';
-import {collection, getFirestore, addDoc} from "firebase/firestore"; 
-import {useContext} from 'react';
-import UserContext from '../store/context/UserContext';
 
 interface Props {
     timeInSeconds: number;
+    handleSaveGame: () => void;
     gameStatus: GameStatus;
     numberOfRows: number;
     numberOfCols: number;
@@ -20,7 +18,6 @@ interface Props {
 }
 
 export const GameArea: React.FC<Props> = (props) => {
-    const user = useContext(UserContext);
     const gameStatusMessage: Record<GameStatus, string> = {
         "lost": "You lost",
         "won": "You win",
@@ -37,22 +34,9 @@ export const GameArea: React.FC<Props> = (props) => {
         "playing": "hidden",
     };
 
-    async function handleSave() {
-        try {
-            const db = getFirestore();
-            await addDoc(collection(db, "games"), {
-                timeInSeconds: props.timeInSeconds,
-                grid: JSON.stringify(props.grid),
-                userId: user?.uid
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return <div className={styles.GameArea}>
         <div className={styles.buttonsContainer}>
-            <button onClick={handleSave}>Save</button>
+            <button onClick={props.handleSaveGame}>Save</button>
         </div>
         <div className={styles.gameStatusContainer} style={{visibility: gameStatusVisibility[props.gameStatus] as any}}>
             {gameStatusMessage[props.gameStatus]}

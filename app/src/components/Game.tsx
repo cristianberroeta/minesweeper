@@ -6,6 +6,9 @@ import {areAllNonMinesRevealed, Grid, revealAdjacentCells, revealAllMinesOfGrid,
 import {copyGrid, createGrid} from '../store/models/Grid';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
+import {collection, getFirestore, addDoc} from "firebase/firestore"; 
+import {useContext} from 'react';
+import UserContext from '../store/context/UserContext';
 
 interface Props {}
 
@@ -16,6 +19,7 @@ export const Game: React.FC<Props> = () => {
     const [grid, setGrid] = useState<Grid>([]);
     const [gameStatus, setGameStatus] = useState<GameStatus>("notStarted");
     const {timeInSeconds, startStopwatch, stopStopwatch} = useStopwatch(0);
+    const user = useContext(UserContext);
 
     useEffect(() => {
         function detectHasUserWon() {
@@ -100,6 +104,21 @@ export const Game: React.FC<Props> = () => {
         });
     }
 
+    async function handleSaveGame() {
+        try {
+            const db = getFirestore();
+            await addDoc(collection(db, "games"), {
+                timeInSeconds: timeInSeconds,
+                grid: JSON.stringify(grid),
+                userId: user?.uid
+            });
+            setGameStatus("paused");
+            stopStopwatch();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return <>
         {
             gameStatus === "notStarted" ?
@@ -119,6 +138,7 @@ export const Game: React.FC<Props> = () => {
             <div className={styles.GameAreaContainer}>
                 <GameArea
                     timeInSeconds={timeInSeconds}
+                    handleSaveGame={handleSaveGame}
                     gameStatus={gameStatus}
                     handleCellClick={handleCellClick}
                     handleCellRightClick={handleCellRightClick}
