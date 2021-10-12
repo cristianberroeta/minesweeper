@@ -1,5 +1,5 @@
 import styles from './LoginForm.module.css';
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {ChangeEvent, useState} from 'react';
 import {User} from '../store/models/User';
 
@@ -10,10 +10,17 @@ interface Props {
 export const LoginForm: React.FC<Props> = props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoginOrSignUp, setIsLoginOrSignUp] = useState<"login" | "signup">("login");
 
     function handleRegisterOrLogin(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        if (isLoginOrSignUp === "signup") handleSignUp();
+        else handleLogin();
+    }
+
+    function handleSignUp() {
         const auth = getAuth();
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user: User = {
@@ -23,9 +30,23 @@ export const LoginForm: React.FC<Props> = props => {
                 props.setUser(user);
             })
             .catch((error) => {
-                console.log(error);
-                
                 alert("There was an error registering");
+            });
+    }
+
+    function handleLogin() {
+        const auth = getAuth();
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user: User = {
+                    uid: userCredential.user.uid,
+                    email: userCredential.user.email ?? "",
+                };
+                props.setUser(user);
+            })
+            .catch((error) => {
+                alert("There was an error logging in");
             });
     }
 
