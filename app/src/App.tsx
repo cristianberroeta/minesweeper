@@ -5,6 +5,7 @@ import {Main} from './components/Main';
 import {User} from './store/models/User';
 import {FirebaseApp, initializeApp} from "firebase/app";
 import FirebaseContext from './store/context/FirebaseContext';
+import UserContext from './store/context/UserContext';
 import {getAuth, onAuthStateChanged, signOut} from "firebase/auth";
 
 function App() {
@@ -56,10 +57,13 @@ function App() {
         <BrowserRouter>
             <FirebaseContext.Provider
                 value={app}>
-                <div>
-                    <Header user={user} handleLogout={handleLogout} />
-                    <Main user={user} setUser={setUser} />
-                </div>
+                <UserContext.Provider
+                    value={user}>
+                    <div>
+                        <Header user={user} handleLogout={handleLogout} />
+                        <Main user={user} setUser={setUser} />
+                    </div>
+                </UserContext.Provider>
             </FirebaseContext.Provider>
         </BrowserRouter>
     );
