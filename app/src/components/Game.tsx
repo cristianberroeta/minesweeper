@@ -49,6 +49,13 @@ export const Game: React.FC<Props> = () => {
             }
             return newGrid;
         });
+        detectGameOver(cell.row, cell.col);
+    }
+
+    function detectGameOver(row: number, col: number) {
+        if (grid[row][col].hasMine) {
+            setGameStatus("lost");
+        }
     }
 
     return <>
