@@ -44,7 +44,7 @@ export const Game: React.FC<Props> = () => {
                     row,
                     col,
                     hasMine: false,
-                    isVisible: false,
+                    isRevealed: false,
                     numberOfMinesAround: 0,
                     isFlagged: false,
                 };

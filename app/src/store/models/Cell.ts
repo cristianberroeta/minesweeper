@@ -2,7 +2,7 @@ export interface Cell {
     row: number;
     col: number;
     hasMine: boolean;
-    isVisible: boolean;
+    isRevealed: boolean;
     numberOfMinesAround: number;
     isFlagged: boolean;
 }
