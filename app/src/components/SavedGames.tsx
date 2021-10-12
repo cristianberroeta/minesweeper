@@ -23,8 +23,6 @@ export const SavedGames: React.FC<Props> = () => {
                 const fetchedGames: Game[] = [];
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
-                    console.log("data.createdAt:", data.createdAt);
-                    
                     fetchedGames.push({
                         id: doc.id,
                         grid: JSON.parse(data.grid),

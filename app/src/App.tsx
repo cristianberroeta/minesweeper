@@ -12,7 +12,6 @@ function App() {
     // const user: User | null = {id: "123", name: "John Doe"};
     const [user, setUser] = useState<User | null>(null);
     const [app, setApp] = useState<FirebaseApp | null>(null);
-    console.log("user:", user);
 
     useEffect(() => {
         const firebaseConfig = {
