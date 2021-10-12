@@ -100,7 +100,7 @@ If the user is logged in, they will see:
 
 ### Game page: /games/:gameId
 
-This page will initially present 2 input selectors for the number of rows, columns, and mines, as well as a Start button.
+This page will initially present 3 input fields for the number of rows, columns, and mines, as well as a Start button.
 
 Once the Start button is pressed, these elements will be displayed:
 - the game board,
