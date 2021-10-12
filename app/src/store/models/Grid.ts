@@ -102,3 +102,13 @@ export function areAllNonMinesRevealed(grid: Grid) {
     }
     return true;
 }
+
+export function revealAllMinesOfGrid(grid: Grid) {
+    for (const row of grid) {
+        for (const cell of row) {
+            if (cell.hasMine && !cell.isRevealed) {
+                cell.isRevealed = true;
+            }
+        }
+    }
+}

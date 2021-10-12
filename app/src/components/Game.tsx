@@ -2,7 +2,7 @@ import {ChangeEvent, useEffect, useState} from 'react';
 import {useStopwatch} from '../hooks/useStopwatch';
 import {Cell} from '../store/models/Cell';
 import {GameStatus} from '../store/models/GameStatus';
-import {areAllNonMinesRevealed, Grid, revealAdjacentCells, setMines, setNumberOfMinesAround} from '../store/models/Grid';
+import {areAllNonMinesRevealed, Grid, revealAdjacentCells, revealAllMinesOfGrid, setMines, setNumberOfMinesAround} from '../store/models/Grid';
 import {copyGrid, createGrid} from '../store/models/Grid';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
@@ -76,7 +76,16 @@ export const Game: React.FC<Props> = () => {
         if (grid[row][col].hasMine) {
             setGameStatus("lost");
             stopStopwatch();
+            revealAllMines();
         }
+    }
+
+    function revealAllMines() {
+        setGrid(grid => {
+            const newGrid = copyGrid(grid);
+            revealAllMinesOfGrid(newGrid);
+            return newGrid;
+        });
     }
 
     return <>
