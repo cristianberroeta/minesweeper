@@ -32,7 +32,7 @@ export const Game: React.FC<Props> = () => {
 
     function handleStartNewGame() {
         setIsGameRunning(true);
-        setGrid(setMines(createGrid()));
+        setGrid(setNumberOfMinesAround(setMines(createGrid())));
     }
 
     function createGrid() {
@@ -44,7 +44,7 @@ export const Game: React.FC<Props> = () => {
                     row,
                     col,
                     hasMine: false,
-                    isRevealed: false,
+                    isRevealed: true,
                     numberOfMinesAround: 0,
                     isFlagged: false,
                 };
@@ -63,6 +63,31 @@ export const Game: React.FC<Props> = () => {
             minesPlaced++;
         }
         return grid;
+    }
+
+    function setNumberOfMinesAround(grid: Grid) {
+        for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
+            const row = grid[rowIndex];
+            for (let colIndex = 0; colIndex < row.length; colIndex++) {
+                const cell = row[colIndex];
+                cell.numberOfMinesAround = calculateNumberOfMinesAround(grid, rowIndex, colIndex);
+            }
+        }
+        return grid;
+    }
+    
+    function calculateNumberOfMinesAround(grid: Grid, row: number, col: number) {
+        let acum = 0;
+        for (let deltaRow = -1; deltaRow < 2; deltaRow++) {
+            for (let deltaCol = -1; deltaCol < 2; deltaCol++) {
+                if (deltaRow === 0 && deltaCol === 0) continue;
+                const otherRow = row + deltaRow;
+                const otherCol = col + deltaCol;
+                if (otherRow < 0 || otherCol < 0 || otherRow >= numberOfRows || otherCol >= numberOfCols) continue;
+                if (grid[otherRow][otherCol].hasMine) acum++;
+            }
+        }
+        return acum;
     }
 
     return <>
