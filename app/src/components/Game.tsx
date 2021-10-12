@@ -6,9 +6,11 @@ import {areAllNonMinesRevealed, Grid, revealAdjacentCells, revealAllMinesOfGrid,
 import {copyGrid, createGrid} from '../store/models/Grid';
 import styles from './Game.module.css';
 import {GameArea} from './GameArea';
-import {collection, getFirestore, addDoc} from "firebase/firestore"; 
+import {collection, getFirestore, addDoc, doc, getDoc} from "firebase/firestore"; 
 import {useContext} from 'react';
 import UserContext from '../store/context/UserContext';
+import {useParams} from 'react-router-dom';
+import {Game as GameModel} from '../store/models/Game';
 
 interface Props {}
 
@@ -18,8 +20,9 @@ export const Game: React.FC<Props> = () => {
     const [numberOfMines, setNumberOfMines] = useState(3);
     const [grid, setGrid] = useState<Grid>([]);
     const [gameStatus, setGameStatus] = useState<GameStatus>("notStarted");
-    const {timeInSeconds, startStopwatch, stopStopwatch} = useStopwatch(0);
+    const {timeInSeconds, startStopwatch, stopStopwatch, setTimeInSeconds} = useStopwatch(0);
     const user = useContext(UserContext);
+    const {id: gameId} = useParams<{id: string}>();
 
     useEffect(() => {
         function detectHasUserWon() {
@@ -35,6 +38,38 @@ export const Game: React.FC<Props> = () => {
 
         detectHasUserWon();
     }, [grid, stopStopwatch]);
+
+    useEffect(() => {
+        async function getGame() {
+            try {
+                if (!gameId) return;
+                const db = getFirestore();
+                const docRef = doc(db, "games", gameId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    const game: GameModel = {
+                        id: docSnap.id,
+                        grid: JSON.parse(data.grid),
+                        createdAt: data.createdAt.toDate(),
+                        uid: data.uid,
+                        timeInSeconds: data.timeInSeconds,
+                    }
+                    setGameStatus("playing");
+                    setGrid(game.grid);
+                    setTimeInSeconds(game.timeInSeconds);
+                    startStopwatch();
+                } else {
+                    alert("There was an error loading the saved game");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getGame();
+        // eslint-disable-next-line
+    }, [gameId, setTimeInSeconds])
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;

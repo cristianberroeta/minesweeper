@@ -20,5 +20,5 @@ export const useStopwatch = (initialSecond: number) => {
         setIsRunning(true);
     }
 
-    return {timeInSeconds, stopStopwatch, startStopwatch};
+    return {timeInSeconds, stopStopwatch, startStopwatch, setTimeInSeconds};
 };
