@@ -49,22 +49,6 @@ Once the Start button is pressed, these elements are displayed:
 
 This page displays the saved games, which the user can click to resume.
 
-## TODOS:
-
-1. Improve accessibility:
-
-- add event listeners for key presses
-- save the last tab index, so that the user can go back to their last cell
-- more accessibility attributes in the game board
-
-2. Create stages that the player can pass
-
-3. Add paging in the /games page. Otherwise, it will be very slow for a user with many games stored.
-
-4. Add unit tests
-
-5. Add end to end tests
-
 ## References:
 
 - Building an accessible bingo web app:  
