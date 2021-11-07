@@ -64,3 +64,40 @@ This page displays the saved games, which the user can click to resume.
 4. Add unit tests
 
 5. Add end to end tests
+
+## References:
+
+- Building an accessible bingo web app:
+https://www.24a11y.com/2019/building-an-accessible-bingo-web-app/
+
+- GoogleChromeLabs's Minesweeper:
+https://proxx.app
+https://github.com/GoogleChromeLabs/proxx
+
+- How to Keep Your CSS Grid Layouts Accessible:
+https://webdesign.tutsplus.com/articles/a-guide-to-css-grid-and-accessibility--cms-32857
+
+- ARIA Grid As an Anti-Pattern:
+https://adrianroselli.com/2020/07/aria-grid-as-an-anti-pattern.html
+
+- Grids Part 1: To grid or not to grid:
+https://sarahmhigley.com/writing/grids-part1/
+
+- How to make MineSweeper with React:
+https://medium.com/@learncodefromjohn/how-to-make-minesweeper-with-react-fb4f9b5358da
+https://github.com/LearnCodeFromJohn/MineSweeper
+https://learncodefromjohn.github.io/MineSweeper/
+
+- Minesweeper in 100 minutes - React JS Game:
+https://www.youtube.com/watch?v=BLdd0zP-tAw
+
+- Build Minesweeper with React & Typescript [2] - Game Logic:
+https://www.youtube.com/watch?v=TbdjunaRVgM
+
+- How To Build A Minesweeper Clone With JavaScript:
+https://www.youtube.com/watch?v=kBMnD_aElCQ
+
+- Github projects:
+https://github.com/nbsp1221/react-minesweeper-game
+https://github.com/TomerOmri/Minesweeper-React
+https://github.com/Obee88/minesweeper-react
