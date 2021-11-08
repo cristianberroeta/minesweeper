@@ -7,13 +7,14 @@ https://mine-sweeper-deviget.web.app
 ## Components:
 
 - Client web application
-- Database
+- Database service
+- Auth service
 
 ## Tools:
 
 - React for the client web application
-- Firebase Firestore for the database
-- Firebase Authentication for authenticating users
+- Firebase Firestore
+- Firebase Authentication
 
 ## Features:
 
