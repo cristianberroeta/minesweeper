@@ -12,7 +12,7 @@ https://mine-sweeper-deviget.web.app
 
 ## Tools:
 
-- React for the client web application
+- React
 - Firebase Firestore
 - Firebase Authentication
 
